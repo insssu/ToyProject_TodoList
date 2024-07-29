@@ -1,6 +1,6 @@
 import { css } from "@emotion/react";
 
-export const form = css`
+export const container = css`
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
@@ -9,55 +9,21 @@ export const form = css`
     width: 500px;
     height: 800px;
     background-color: white;
+`;
 
+export const input = css`
     input {
-        box-sizing: border-box;
-        border: 1px solid #acacac;
+        border: 1px solid #dbdbdb;
         border-radius: 5px;
-        padding: 0;
-        margin-right: 10px;
-        width: 100%;
-        height: 100%;
-        cursor: pointer;
+        width: 200px;
+        height: 30px;
     }
 
     button {
-        margin: 0;
-        border: 1px solid #acacac;
+        border: 1px solid #dbdbdb;
         border-radius: 5px;
-        padding: 0;
-        width: 60px;
-        height: 100%;
-        background-color: #fafafa;
-        &:hover {
-            background-color: #eeeeee;
-        }
-        &:active {
-            background-color: #dbdbdb;
-        }
+        width: auto;
+        height: 30px;
+        background-color: aquamarine;
     }
-`;
-
-export const box = css`
-    display: flex;
-    justify-content: space-between;
-    box-sizing: border-box;
-    margin-bottom: 10px;
-    width: 100%;
-    height: 40px;
-`;
-
-export const con = css`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border: 1px solid #acacac;
-    border-radius: 5px;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-`;
-
-export const list = css`
-    display: flex;
 `;
