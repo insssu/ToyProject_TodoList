@@ -1,20 +1,15 @@
-import { css } from "@emotion/react";
-
-export const layout = css`
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
+export const container = css`
+    box-sizing: border-box;
+    border: 1px solid #968a8a;
     width: 100%;
     height: 100%;
+
 `;
 
-export const headline = css`
-    display: flex;
+export const list_container = css`
     box-sizing: border-box;
-    margin: 0 auto;
-
-    p {
-        position: absolute;
-        right: 30px;
-    }
+    border: 1px solid #dbdbdb;
+    width: 400px;
+    height: 800px;
+    
 `;
