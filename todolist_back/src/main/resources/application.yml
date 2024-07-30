@@ -4,6 +4,8 @@ spring:
     group:
       local: local, common, secret
 
+server:
+  port: 8081
 ---
 
 spring:

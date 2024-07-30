@@ -9,9 +9,9 @@ function MainContainer({ children }) {
                 <h1>TODO LIST</h1>
                 <p>2024-07</p>
             </div>
-                <div css={s.layout}>
-                    {children}
-                </div>
+            <div css={s.layout}>
+                {children}
+            </div>
         </>
     );
 }
