@@ -28,7 +28,7 @@ public class TodoListController {
     }
 
     @GetMapping("/todolist")
-    private ResponseEntity<?> getListApi(@RequestBody Req) {
+    private ResponseEntity<?> getListApi(@RequestBody ReqRegisterTodoListDto reqDto) {
         return null;
     }
 
