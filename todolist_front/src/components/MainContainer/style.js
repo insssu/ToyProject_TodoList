@@ -1,15 +1,22 @@
+import { css } from "@emotion/react";
+
+
 export const container = css`
+    position: relative;
+    display: flex;
+    flex-direction: column;
     box-sizing: border-box;
-    border: 1px solid #968a8a;
     width: 100%;
     height: 100%;
 
+    .tag {
+        display: flex;
+        justify-content: center;
+    }
+
+    .children-container {
+        display: flex;
+        justify-content: space-around;
+    }
 `;
 
-export const list_container = css`
-    box-sizing: border-box;
-    border: 1px solid #dbdbdb;
-    width: 400px;
-    height: 800px;
-    
-`;

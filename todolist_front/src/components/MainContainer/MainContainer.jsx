@@ -1,22 +1,19 @@
-import React from 'react';
+import React, { Children } from 'react';
 /** @jsxImportSource @emotion/react */
 import * as s from "./style";
 
-function MainContainer(props) {
+function MainContainer({children}) {
     return (
         <>
             <div css={s.container}>
-                <h1>TODO LIST</h1>
-                <div css={s.list_container}>
-                    <input type="text" />
-
+                <div className='tag'>
+                    <h1>TODO LIST</h1>
                 </div>
-                <div>
-
-                </div>
-        
-            </div>
             
+                <div className='children-container'>
+                    {children}
+                </div>
+            </div>
         </>
     );
 }
