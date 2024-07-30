@@ -18,26 +18,27 @@ public class TodoListController {
     private TodoListServiceImpl todoListService;
 
     @PostMapping("/todo")
-    private ResponseEntity<?> registerApi(@RequestBody ReqRegisterTodoListDto reqDto) {
+    public ResponseEntity<?> registerApi(@RequestBody ReqRegisterTodoListDto reqDto) {
         return ResponseEntity.ok().body(todoListService.registerTodoList(reqDto));
     }
 
     @PutMapping("/todo/{todoId}")
-    private ResponseEntity<?> modifyApi(@PathVariable int todoListId, @RequestBody ReqUpdateTodoListDto reqDto) {
+    public ResponseEntity<?> modifyApi(@PathVariable int todoListId, @RequestBody ReqUpdateTodoListDto reqDto) {
         return ResponseEntity.ok().body(todoListService.updateTodoList(reqDto));
     }
 
     @GetMapping("/todolist")
-    private ResponseEntity<?> getListApi(@RequestBody ReqRegisterTodoListDto reqDto) {
+    public ResponseEntity<?> getListApi(@RequestBody ReqRegisterTodoListDto reqDto) {
         return null;
     }
 
 
-    private ResponseEntity<?> getApi() {
+    public ResponseEntity<?> getApi() {
         return null;
     }
 
-    private ResponseEntity<?> removeApi() {
-        return null;
+    @DeleteMapping("/todo/{todoId}")
+    public ResponseEntity<?> removeApi(@PathVariable int todoId) {
+        return ResponseEntity.ok().body(todoListService.deleteTodoList(todoId));
     }
 }

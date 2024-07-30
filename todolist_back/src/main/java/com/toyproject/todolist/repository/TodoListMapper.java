@@ -9,5 +9,6 @@ public interface TodoListMapper {
     int save(TodoList todoList);
     TodoList findTodoListById(int id);
 
+    int delete(int todoList);
     int update(TodoList todoList);
 }

@@ -19,6 +19,13 @@
             todoId = #{todoId}
 
     </update>
+    <delete id="delete" parameterType="integer">
+        delete
+        from
+            todoList_tb
+        where
+            todoId = #{todoId}
+    </delete>
 
     <select id="findTodoListById" resultType="com.toyproject.todolist.entity.TodoList">
 

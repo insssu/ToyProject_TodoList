@@ -31,4 +31,8 @@ public class TodoListServiceImpl {
                 .build();
         return todoListMapper.update(todoList);
     }
+
+    public int deleteTodoList(int todoId) {
+        return todoListMapper.delete(todoId);
+    }
 }
