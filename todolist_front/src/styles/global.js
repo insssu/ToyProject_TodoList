@@ -10,6 +10,6 @@ export const reset = css`
         width: 100%;
         height: 100%;
         font-size: 16px;
-        background-color: #fafafa;
+        background-color: #f7ecec;
     }
 `;
