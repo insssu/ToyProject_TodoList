@@ -1,5 +1,6 @@
 package com.toyproject.todolist.controller;
 
+import com.toyproject.todolist.dto.ReqGetTodoListDto;
 import com.toyproject.todolist.dto.ReqRegisterTodoListDto;
 import com.toyproject.todolist.dto.ReqUpdateTodoListDto;
 import com.toyproject.todolist.service.TodoListServiceImpl;
@@ -28,13 +29,8 @@ public class TodoListController {
     }
 
     @GetMapping("/todolist")
-    public ResponseEntity<?> getListApi(@RequestBody ReqRegisterTodoListDto reqDto) {
-        return null;
-    }
-
-
-    public ResponseEntity<?> getApi() {
-        return null;
+    public ResponseEntity<?> getListApi(ReqGetTodoListDto reqDto) {
+        return ResponseEntity.ok().body(todoListService.getTodoList(reqDto));
     }
 
     @DeleteMapping("/todo/{todoId}")

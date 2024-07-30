@@ -27,7 +27,19 @@
             todoId = #{todoId}
     </delete>
 
-    <select id="findTodoListById" resultType="com.toyproject.todolist.entity.TodoList">
-
+    <select id="findTodoListByTodoId"
+            parameterType="com.toyproject.todolist.entity.TodoList"
+            resultType="com.toyproject.todolist.entity.TodoList">
+        select
+            todoId,
+            content,
+            date,
+            status
+        from
+            todoList_tb
+        where
+            todoId = #{todoId}
+        order by
+            todoId
     </select>
 </mapper>

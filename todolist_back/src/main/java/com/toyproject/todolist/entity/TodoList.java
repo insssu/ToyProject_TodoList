@@ -7,6 +7,6 @@ import lombok.Data;
 @Data
 public class TodoList {
     private int todoId;
-    private String message;
+    private String content;
     private String date;
 }
