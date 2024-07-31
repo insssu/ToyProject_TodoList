@@ -39,7 +39,7 @@ export const container = css`
         
     }
 
-    .list-container {
+    .card-container {
         box-sizing: border-box;
         border: 1px solid #dbdbdb;
         padding: 10px;
@@ -47,16 +47,17 @@ export const container = css`
         height: 700px;
     }
 
-    .list {
+    .card {
         box-sizing: border-box;
         border: 1px solid #dbdbdb;
+        padding: 5px 10px 0;
         width: 100%;
         height: 150px;
     }
 
-    .list > button {
+    .card > button {
         position: relative;
-        left: 250px;
+        left: 240px;
         border: none;
         background-color: #ffffff;
         cursor: pointer;
@@ -64,6 +65,19 @@ export const container = css`
 
     p {
         display: flex;
-        flex-direction: center;
+        justify-content: center;
+        align-items: center;
+    }
+
+    label {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 0;
+        box-sizing: border-box;
+        border: 1px solid #dbdbdb;
+        width: 100%;
+        height: 100px;
+
     }
 `;

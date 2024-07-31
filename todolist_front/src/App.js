@@ -3,6 +3,7 @@ import { Global } from "@emotion/react";
 import { reset } from "./styles/global";
 import MainList from "./components/MainList/MainList";
 import SubList from "./components/SubList/SubList";
+import { useState } from "react";
 
 function App() {
   return (
