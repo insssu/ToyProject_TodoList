@@ -9,7 +9,7 @@ function MainContainer({children}) {
     <>
       <div css={s.container}>
         <h1>TODO LIST</h1>
-        <p><input type="date" /></p>
+        <p><input type="month" /></p>
       </div>
       <div css={s.layout}>
         {children}
