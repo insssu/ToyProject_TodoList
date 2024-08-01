@@ -7,6 +7,6 @@ import lombok.Data;
 @Builder
 public class RespGetTodoListDto {
     private int todoId;
-    private String message;
+    private String content;
     private String date;
 }
