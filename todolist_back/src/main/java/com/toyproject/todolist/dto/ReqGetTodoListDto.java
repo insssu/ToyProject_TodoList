@@ -5,11 +5,11 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Builder
 @Data
-public class ReqRegisterTodoListDto {
+public class ReqGetTodoListDto {
+    private int todoId;
     private String content;
-    private String date;
 }
