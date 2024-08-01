@@ -5,3 +5,7 @@ export const selectMonthAtom = atom({
   default: new Date().toISOString().slice(0, 7)
 })
 
+export const todoListAtom = atom({
+  key: "todolist",
+  default: []
+})
