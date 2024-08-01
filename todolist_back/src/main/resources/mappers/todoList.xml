@@ -4,46 +4,42 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.toyproject.todolist.repository.TodoListMapper">
     <insert id="save" parameterType="com.toyproject.todolist.entity.TodoList">
-        insert into todo_tb
-            values(0, #{content}, #{date}, #{state})
+        insert into
+            todoList_tb
+        values(0, #{message}, #{date})
 
     </insert>
-    <update id="update" parameterType="com.toyproject.todolist.entity.TodoList">
+    <update id="update">
         update
-            todo_tb
+            todoList_tb
         set
-            content = #{content}
+            message = #{message},
+            date = #{date}
         where
             todoId = #{todoId}
 
     </update>
-    <delete id="delete">
+    <delete id="delete" parameterType="integer">
         delete
-         from
-        todo_tb
+        from
+            todoList_tb
         where
-        todoId = #{todoId}
+            todoId = #{todoId}
     </delete>
 
     <select id="findTodoListByTodoId"
+            parameterType="com.toyproject.todolist.entity.TodoList"
             resultType="com.toyproject.todolist.entity.TodoList">
         select
             todoId,
             content,
             date,
-            state
+            status
         from
-            todo_tb
-    </select>
-    <select id="findTodoById" resultType="com.toyproject.todolist.entity.TodoList">
-        select
-            todoId,
-            content,
-            date,
-            state
-        from
-            todo_tb
+            todoList_tb
         where
             todoId = #{todoId}
+        order by
+            todoId
     </select>
 </mapper>

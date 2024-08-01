@@ -9,5 +9,4 @@ public class TodoList {
     private int todoId;
     private String content;
     private String date;
-    private int state;
 }
