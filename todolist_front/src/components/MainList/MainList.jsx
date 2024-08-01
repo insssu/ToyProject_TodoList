@@ -14,7 +14,7 @@ function MainList(props) {
   };
 
   const [inputValue, setInputValue] = useState("");
-  const [todoList, setTodoList] = useState([]);
+  const [todoList, setTodoList] = useRecoilState(todoListAtom);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modifyInput, setModifyInput] = useState(emptyModifyInput); 
   const [selectMonth, setSelectMonth ] = useRecoilState(selectMonthAtom);
@@ -29,7 +29,7 @@ function MainList(props) {
     setInputValue(e.target.value);
   };
 
-  // input 클릭 
+  // input 추가 버튼 클릭
   const handleRegisterSubmitClick = async () => {
     if(inputValue.trim() !== '') {
       const newRegister = {
@@ -97,7 +97,7 @@ function MainList(props) {
     setModifyInput(responseData);
   }
 
-  // 수정버튼이 눌려진 todo 내용값 들고오기 
+  // 수정버튼이 눌려진 todo 내용값을 서버에서 들고오기 
   const requestTodo = async(todoId) => {
     let responseData = null;
     try {
@@ -109,10 +109,11 @@ function MainList(props) {
     return responseData;
   }
 
-  // 수정 완료 버튼 클릭 
+  // modal - 수정 완료 버튼 클릭 
   const handleModifySubmitClick = async() => {
     await requestModify();
     closeModal();
+    alert("수정 완료!");
     requestTodoList();
   }
 
