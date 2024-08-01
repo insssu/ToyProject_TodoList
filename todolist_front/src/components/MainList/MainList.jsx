@@ -4,7 +4,7 @@ import * as s from "./style";
 import api from "../../apis/instance";
 import axios from "axios";
 import ReactModal from "react-modal";
-import { selectMonthAtom } from "../../atoms/todolistAtom";
+import { selectMonthAtom, todoListAtom } from "../../atoms/todolistAtom";
 import { useRecoilState } from "recoil";
 
 function MainList(props) {
@@ -19,11 +19,12 @@ function MainList(props) {
   const [modifyInput, setModifyInput] = useState(emptyModifyInput); 
   const [selectMonth, setSelectMonth ] = useRecoilState(selectMonthAtom);
   
+  // todolist가 바뀔때마다 렌더링
   useEffect(() => {
     requestTodoList();
   }, []);
 
-  // input 
+  // input 상태의 값 넣기 
   const handleRegisterInputChange = (e) => {
     setInputValue(e.target.value);
   };
@@ -61,7 +62,6 @@ function MainList(props) {
     }
   };
 
-
   // 삭제 버튼 클릭 
   const handleDeleteClick = async (todoId) => {
     if(window.confirm("삭제하시겠습니까?")) {
@@ -71,7 +71,7 @@ function MainList(props) {
     }
   }
 
-  // 삭제 데이터 
+  // 삭제 데이터 todoId 
   const requestDelete = async (todoId) => {
     let responseData = null;
     try {
@@ -83,7 +83,7 @@ function MainList(props) {
     return responseData;
   }
 
-  // 닫힌 modal 창 상태 
+  // modal 창 상태  
   const closeModal = () => {
     setIsModalOpen(false);
     setModifyInput(emptyModifyInput);
@@ -97,7 +97,7 @@ function MainList(props) {
     setModifyInput(responseData);
   }
 
-  // 단건 조회로 데이터 가져옴 
+  // 수정버튼이 눌려진 todo 내용값 들고오기 
   const requestTodo = async(todoId) => {
     let responseData = null;
     try {
@@ -109,14 +109,14 @@ function MainList(props) {
     return responseData;
   }
 
-  // 수정 완료 클릭시 
+  // 수정 완료 버튼 클릭 
   const handleModifySubmitClick = async() => {
     await requestModify();
     closeModal();
     requestTodoList();
   }
 
-  // 수정 값 -> 서버 
+  // 수정 데이터 (수정 modal 창 수정 내용)
   const requestModify = async() => {
     let responseData = null;
     try {
@@ -138,6 +138,18 @@ function MainList(props) {
     })
   }
 
+  // checkbox 상태
+  const  handleCheckboxStateChange = async (todoId, state) => {
+    let responseData = null;
+    try {
+      const response = await api.put(`/todo/checkbox`, {todoId, state});
+      responseData = response.data;
+    } catch(e) {
+      console.error(e);
+    }
+    requestTodoList();
+    console.log(responseData);
+  }
 
   return (
     <>
@@ -170,6 +182,7 @@ function MainList(props) {
           type="text"
           onChange={handleRegisterInputChange}
           value={inputValue}
+          placeholder="할 일을 입력해주세요"
         />
         <button onClick={handleRegisterSubmitClick}>추가</button>
       </div>
@@ -177,7 +190,7 @@ function MainList(props) {
         {todoList.map((todoList) => (
           <div className="card" key={todoList.todoId}>
             <div className="info">
-              <input type="checkbox"  />
+              <input type="checkbox" onChange={() => handleCheckboxStateChange(todoList.todoId, todoList.state)} checked={todoList.state}/>
               <p>{todoList.date}</p>
               <div className="buttons">
                 <button onClick={() => handleModifyClick(todoList.todoId)}>수정</button>

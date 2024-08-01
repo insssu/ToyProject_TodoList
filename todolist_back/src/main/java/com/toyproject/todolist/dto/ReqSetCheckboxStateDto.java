@@ -7,11 +7,9 @@ import lombok.NoArgsConstructor;
 
 @Data
 @Builder
-@NoArgsConstructor
 @AllArgsConstructor
-
-public class RespGetTodoDto {
+@NoArgsConstructor
+public class ReqSetCheckboxStateDto {
     private int todoId;
     private int state;
-    private String content;
 }
