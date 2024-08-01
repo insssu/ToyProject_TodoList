@@ -8,13 +8,15 @@ import { selectMonthAtom } from "../../atoms/todolistAtom";
 import { useRecoilState } from "recoil";
 
 function MainList(props) {
+  const emptyModifyInput = {
+    todoId: "",
+    content: ""
+  };
+
   const [inputValue, setInputValue] = useState("");
   const [todoList, setTodoList] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [modifyInput, setModifyInput] = useState({
-    todoId: "",
-    content: ""
-  }); 
+  const [modifyInput, setModifyInput] = useState(emptyModifyInput); 
   const [selectMonth, setSelectMonth ] = useRecoilState(selectMonthAtom);
   
   useEffect(() => {
@@ -84,7 +86,7 @@ function MainList(props) {
   // 닫힌 modal 창 상태 
   const closeModal = () => {
     setIsModalOpen(false);
-    setModifyInput("");
+    setModifyInput(emptyModifyInput);
   }
   
   
@@ -146,7 +148,7 @@ function MainList(props) {
             type="text"
             name="todoId"
             onChange={handleModifyInputChange}
-            value={modifyInput.todoId || ""}
+            value={modifyInput.todoId}
             disabled={true}
           />
           <input
