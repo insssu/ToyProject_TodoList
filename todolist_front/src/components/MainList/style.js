@@ -118,3 +118,34 @@ export const container = css`
     }
 
 `;
+
+export const modal = css`
+    display: flex;
+    justify-content: center;
+    position: relative;
+    box-sizing: border-box;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    padding: 20px;
+    width: 400px;
+    height: 400px;
+    background-color: aliceblue;
+`;
+
+export const modfiy = css`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  input {
+    width: 200px;
+    height: 50px;
+  }
+  
+  button {
+    width: 100px;
+  }
+  `;
+

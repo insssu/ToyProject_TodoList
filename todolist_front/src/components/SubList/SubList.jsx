@@ -1,18 +1,29 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 /** @jsxImportSource @emotion/react */
 import * as s from './style';
+import { useRecoilState } from 'recoil';
+import { stateAtom } from '../../atoms/todolistAtom';
 
 function SubList(props) {
   
+  const [isDone, setIsDone ] = useState(false);
+
+  const handleStateChangeClick = () => {
+    setIsDone(isDone => {
+      return !isDone
+    });
+  }
+
 
 
   return (
     <>
       <div css={s.container}>
         <div className=''>
-          <div className='icon'>
-            <div className='status1'>미완료</div>
-            <div className='status2'>완료</div>
+          <div className='icon' onClick={handleStateChangeClick}>
+            <div className={`move ${isDone ? "right" : "" }`}></div>
+            <div className='status'>미완료</div>
+            <div className='status'>완료</div>
           </div>
         </div>
       </div>

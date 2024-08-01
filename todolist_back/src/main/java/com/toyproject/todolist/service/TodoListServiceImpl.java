@@ -1,9 +1,6 @@
 package com.toyproject.todolist.service;
 
-import com.toyproject.todolist.dto.ReqGetTodoListDto;
-import com.toyproject.todolist.dto.ReqRegisterTodoListDto;
-import com.toyproject.todolist.dto.ReqUpdateTodoListDto;
-import com.toyproject.todolist.dto.RespGetTodoListDto;
+import com.toyproject.todolist.dto.*;
 import com.toyproject.todolist.entity.TodoList;
 import com.toyproject.todolist.repository.TodoListMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,12 +16,11 @@ public class TodoListServiceImpl {
     private TodoListMapper todoListMapper;
 
     public int registerTodoList(ReqRegisterTodoListDto reqDto) {
-        String newDate = reqDto.getDate().substring(0, 7);
 
         TodoList todoList = TodoList.builder()
                 .todoId(0)
                 .content(reqDto.getContent())
-                .date(newDate)
+                .date(reqDto.getDate())
                 .build();
 
         return todoListMapper.save(todoList);
@@ -34,7 +30,7 @@ public class TodoListServiceImpl {
         TodoList todoList = TodoList.builder()
                 .todoId(reqDto.getTodoId())
                 .content(reqDto.getContent())
-                .date(reqDto.getDate())
+//                .date(reqDto.getDate())
                 .build();
         return todoListMapper.update(todoList);
     }
@@ -58,4 +54,15 @@ public class TodoListServiceImpl {
     public int deleteTodoList(int todoId) {
         return todoListMapper.delete(todoId);
     }
+
+    public RespGetTodoDto getTodo(int todoId) {
+
+        TodoList getTodo = todoListMapper.findTodoById(todoId);
+
+        return RespGetTodoDto.builder()
+                .todoId(getTodo.getTodoId())
+                .content(getTodo.getContent())
+                .build();
+    }
+
 }

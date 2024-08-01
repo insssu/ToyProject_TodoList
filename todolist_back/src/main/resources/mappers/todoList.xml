@@ -8,20 +8,18 @@
             values(0, #{content}, #{date}, #{state})
 
     </insert>
-    <update id="update">
+    <update id="update" parameterType="com.toyproject.todolist.entity.TodoList">
         update
             todo_tb
         set
-            content = #{content},
-            date = #{date}
-            state = #{state}
+            content = #{content}
         where
             todoId = #{todoId}
 
     </update>
-    <delete id="delete" parameterType="integer">
+    <delete id="delete">
         delete
-        from
+         from
         todo_tb
         where
         todoId = #{todoId}
@@ -36,5 +34,16 @@
             state
         from
             todo_tb
+    </select>
+    <select id="findTodoById" resultType="com.toyproject.todolist.entity.TodoList">
+        select
+            todoId,
+            content,
+            date,
+            state
+        from
+            todo_tb
+        where
+            todoId = #{todoId}
     </select>
 </mapper>
