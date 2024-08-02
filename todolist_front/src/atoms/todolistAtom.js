@@ -9,3 +9,8 @@ export const todoListAtom = atom({
   key: "todolist",
   default: []
 })
+
+export const modalAtom = atom({
+  key: "isModalOpen",
+  default: false
+})

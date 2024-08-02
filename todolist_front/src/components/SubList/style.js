@@ -17,6 +17,7 @@ export const container = css`
       width: 500px;
       height: 40px;
       border-radius: 3px;
+      cursor: pointer;
     }
 
     .move {
@@ -43,41 +44,32 @@ export const container = css`
       border-radius: 3px;
       z-index: 10;
       background-color: transparent;
+      font-family: 'GangwonEduSaeeum_OTFMediumA';
+      font-size: 24px;
     }
 
-    .card {
-      display: flex;
-      flex-direction: column;
-      border: 1px solid #dbdbdb;
-      padding: 10px;
-      width: auto;
-      height: 150px;
-      margin-bottom: 10px;
-    }
+    .mini-box {
+    box-sizing: border-box;
+    border: 1px solid #dbdbdb;
+    padding: 20px;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
 
-    .info {
-      display: flex;
-      position: relative;
-      align-items: center;
+    &::-webkit-scrollbar {
+      display: none;
     }
+  }
 
-    .info > p {
-      display: inline-block;
-      margin: 0;
-    }
 
-    .info > input [type=checkbox] {
-      height: 20px;
-      width: 20px;
-      margin-right: 5px;
-    }
-
-    .card > p {
-      display: flex;
-      justify-content: center;
-      font-size: 20px;
+  .card {
+        display: flex;
+        flex-direction: column;
+        border: 1px solid #dbdbdb;
+        padding: 10px;
+        width: auto;
+        height: 150px;
+        margin-bottom: 10px;
     }
 
   `;
-
-  

@@ -1,15 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 /** @jsxImportSource @emotion/react */
 import * as s from "./style";
 import api from "../../apis/instance";
 import axios from "axios";
 import ReactModal from "react-modal";
-import { selectMonthAtom, todoListAtom } from "../../atoms/todolistAtom";
+import {selectMonthAtom, todoListAtom } from "../../atoms/todolistAtom";
 import { useRecoilState } from "recoil";
 
 function MainList(props) {
   const emptyModifyInput = {
-    todoId: "",
     content: ""
   };
 
@@ -18,6 +17,8 @@ function MainList(props) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modifyInput, setModifyInput] = useState(emptyModifyInput); 
   const [selectMonth, setSelectMonth ] = useRecoilState(selectMonthAtom);
+  
+  const modifyInputRef = useRef(null);
   
   // todolist가 바뀔때마다 렌더링
   useEffect(() => {
@@ -64,9 +65,9 @@ function MainList(props) {
 
   // 삭제 버튼 클릭 
   const handleDeleteClick = async (todoId) => {
-    if(window.confirm("삭제하시겠습니까?")) {
+    if(window.confirm("삭제하시면 되돌릴 수 없습니다.\n그래도 삭제하시겠습니까?")) {
       await requestDelete(todoId);
-      alert("삭제 완료!")
+      alert("삭제 완료!");
       requestTodoList();
     }
   }
@@ -95,6 +96,7 @@ function MainList(props) {
     setIsModalOpen(true);
     const responseData = await requestTodo(todoId);
     setModifyInput(responseData);
+    modifyInputRef.current.focus();
   }
 
   // 수정버튼이 눌려진 todo 내용값을 서버에서 들고오기 
@@ -152,31 +154,40 @@ function MainList(props) {
     console.log(responseData);
   }
 
+  // enter 키 
+  const handleOnkeyDown = (e) => {
+    if (e.keyCode === 13) {
+      handleRegisterSubmitClick();
+    }
+  };
+
+  const handleOnkeyDownModal = (e) => {
+    if(e.keyCode === 13) {
+      handleModifySubmitClick();
+    }
+  }
+
   return (
     <>
     <ReactModal css={s.modal} 
-      isOpen={isModalOpen} onRequestClass={closeModal} ariaHideApp={false} >
+      isOpen={isModalOpen} onRequestClose={closeModal} ariaHideApp={false}> 
       <div css={s.modfiy}>
-          <input
-            type="text"
-            name="todoId"
-            onChange={handleModifyInputChange}
-            value={modifyInput.todoId}
-            disabled={true}
-          />
+        <h2>TODO LIST 수정</h2>
           <input
             type="text"
             name="content"
             onChange={handleModifyInputChange}
             value={modifyInput.content}
+            ref={modifyInputRef}
+            onKeyDown={handleOnkeyDownModal}
           />
-        
-        <div>
+        <div css={s.button}>
           <button onClick={handleModifySubmitClick}>수정</button>
           <button onClick={() => closeModal()}>취소</button>
         </div>
       </div>
     </ReactModal>
+    
     <div css={s.container}>
       <div className="input-box">
         <input
@@ -184,8 +195,9 @@ function MainList(props) {
           onChange={handleRegisterInputChange}
           value={inputValue}
           placeholder="할 일을 입력해주세요"
+          onKeyDown={handleOnkeyDown}
         />
-        <button onClick={handleRegisterSubmitClick}>추가</button>
+        <button onClick={handleRegisterSubmitClick} onKeyDown={handleOnkeyDown} name="button">추가</button>
       </div>
       <div className="mini-box">
         {todoList.map((todoList) => (

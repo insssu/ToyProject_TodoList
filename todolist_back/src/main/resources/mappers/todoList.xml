@@ -42,6 +42,8 @@
             state
         from
             todo_tb
+        order by
+             todoId desc
     </select>
     <select id="findTodoById" resultType="com.toyproject.todolist.entity.TodoList">
         select
