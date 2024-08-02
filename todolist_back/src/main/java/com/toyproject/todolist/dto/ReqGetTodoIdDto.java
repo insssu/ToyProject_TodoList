@@ -1,13 +1,14 @@
-package com.toyproject.todolist.entity;
+package com.toyproject.todolist.dto;
 
 import lombok.Builder;
 import lombok.Data;
 
-@Builder
 @Data
-public class TodoList {
+@Builder
+public class ReqGetTodoIdDto {
     private int todoId;
     private String content;
     private String date;
     private int state;
+
 }

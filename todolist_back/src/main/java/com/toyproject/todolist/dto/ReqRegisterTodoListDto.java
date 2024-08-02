@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class ReqRegisterTodoListDto {
-    private int todoId;
-    private String message;
+    private String content;
     private String date;
+    private int state;
 }

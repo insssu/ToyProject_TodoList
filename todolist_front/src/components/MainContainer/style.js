@@ -18,5 +18,14 @@ export const container = css`
         display: flex;
         justify-content: space-around;
     }
+
+    .month {
+        position: absolute;
+        margin-top: 10px;
+        right: 5%;
+        width: 100px;
+        height: 25px;
+        
+    }
 `;
 

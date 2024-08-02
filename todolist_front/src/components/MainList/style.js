@@ -21,9 +21,9 @@ export const container = css`
 
     .input-box > input {
         border-radius: 5px;
+        margin-right: 20px;
         width: 270px;
         height: 25px;
-        margin-right: 25px;
     }
 
     .input-box > button {
@@ -40,30 +40,54 @@ export const container = css`
     }
 
     .card-container {
+        display: flex;
+        flex-direction: column;
         box-sizing: border-box;
         border: 1px solid #dbdbdb;
         padding: 10px;
         width: 100%;
         height: 700px;
+        overflow-y: auto;
+        &::-webkit-scrollbar {
+            display: none;
+        }
     }
 
     .card {
+        position: relative;
+        margin-bottom: 5px;
         box-sizing: border-box;
         border: 1px solid #dbdbdb;
-        padding: 5px 10px 0;
+        padding: 5px 10px 5px;
         width: 100%;
         height: 150px;
     }
 
-    .card > button {
-        position: relative;
-        left: 240px;
+    .card-tag {
+        display: flex   ;
+        box-sizing: border-box;
+        width: 100%;
+        height: 30px;
+    }
+
+    .edit {
+        position: absolute;
+        right: 12%;
+        border: none;
+        background-color: #ffffff;
+        cursor: pointer;
+    }
+
+    .delete {
+        position: absolute;
+        right: 2%;
         border: none;
         background-color: #ffffff;
         cursor: pointer;
     }
 
     p {
+        margin: 0;
         display: flex;
         justify-content: center;
         align-items: center;
