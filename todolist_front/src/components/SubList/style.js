@@ -8,6 +8,7 @@ export const container = css`
   width: 500px;
   height: 750px;
   background-color: #fafafa;
+  border-radius: 5px;
 
     .icon {
       position: relative;
@@ -61,6 +62,26 @@ export const container = css`
     }
   }
 
+  .info {
+    display: flex;
+
+    label::after {
+      content: "🙈";
+      font-size: 28px;
+      cursor: pointer;
+    }
+    input {
+      display: none;
+    }
+    input:checked+label::after {
+      content: "🙉";
+    }
+  }
+
+  .info > p{
+    margin-left: 10px;
+    margin-top: 5px;
+  }
 
   .card {
         display: flex;
@@ -72,4 +93,10 @@ export const container = css`
         margin-bottom: 10px;
     }
 
+    .content {
+      font-size: 20px;
+      align-self: center;
+      word-break: break-all;
+  
+    }
   `;
