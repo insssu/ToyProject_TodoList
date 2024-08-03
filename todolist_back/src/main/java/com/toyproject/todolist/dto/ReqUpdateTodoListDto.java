@@ -12,6 +12,4 @@ import lombok.NoArgsConstructor;
 public class ReqUpdateTodoListDto {
     private int todoId;
     private String content;
-//    private String date;
-//    private int state;
 }

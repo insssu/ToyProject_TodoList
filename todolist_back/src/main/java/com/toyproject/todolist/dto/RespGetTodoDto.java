@@ -12,6 +12,5 @@ import lombok.NoArgsConstructor;
 
 public class RespGetTodoDto {
     private int todoId;
-    private int state;
     private String content;
 }

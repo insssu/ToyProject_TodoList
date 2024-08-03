@@ -20,31 +20,15 @@ public class TodoListController {
 
     @PostMapping("/todo")
     public ResponseEntity<?> registerApi(@RequestBody ReqRegisterTodoListDto reqDto) {
-        log.info("{}",reqDto);
-        return ResponseEntity.ok().body(todoListService.registerTodoList(reqDto));
-    }
-
-
-    @PutMapping("/todo/{todoId}")
-    public ResponseEntity<?> modifyApi(@PathVariable int todoId, @RequestBody ReqUpdateTodoListDto reqDto) {
         log.info("{}", reqDto);
-        return ResponseEntity.ok().body(todoListService.updateTodoList(reqDto));
+        return ResponseEntity.ok().body(todoListService.registerTodo(reqDto));
     }
-
-
-    @PutMapping("/todo/checkbox")
-    public ResponseEntity<?> setCheckboxState(@RequestBody ReqSetCheckboxStateDto reqDto) {
-        log.info("{}", reqDto);
-        return ResponseEntity.ok().body(todoListService.setCheckboxState(reqDto));
-    }
-
 
     @GetMapping("/todolist/{date}")
-    public ResponseEntity<?> getListApi(@PathVariable String date) {
+    public ResponseEntity<?> getTodoListApi(@PathVariable String date) {
         log.info("{}", date);
         return ResponseEntity.ok().body(todoListService.getTodoList(date));
     }
-
 
     @GetMapping("/todo/{todoId}")
     public ResponseEntity<?> getApi(@PathVariable int todoId) {
@@ -52,17 +36,21 @@ public class TodoListController {
         return ResponseEntity.ok().body(todoListService.getTodo(todoId));
     }
 
-    @GetMapping("/todos/{state}")
-    public ResponseEntity<?> getTodoApi(@PathVariable int state) {
-        log.info("{}", state);
-        return ResponseEntity.ok().body(todoListService.getTodoListDtoBystate(state));
+    @PutMapping("/todo/{todoId}")
+    public ResponseEntity<?> modifyApi(@PathVariable int todoId, @RequestBody ReqUpdateTodoListDto reqDto) {
+        log.info("{}", reqDto);
+        return ResponseEntity.ok().body(todoListService.updateTodo(reqDto));
     }
 
+    @PutMapping("/todo/checkbox")
+    public ResponseEntity<?> modifyCheckBoxStateApi(@RequestBody ReqSetCheckboxStateDto reqDto) {
+        log.info("{}", reqDto);
+        return ResponseEntity.ok().body(todoListService.updateCheckBoxState(reqDto));
+    }
 
     @DeleteMapping("/todo/{todoId}")
     public ResponseEntity<?> removeApi(@PathVariable int todoId) {
         log.info("{}", todoId);
-        return ResponseEntity.ok().body(todoListService.deleteTodoList(todoId));
+        return ResponseEntity.ok().body(todoListService.deleteTodo(todoId));
     }
-
 }

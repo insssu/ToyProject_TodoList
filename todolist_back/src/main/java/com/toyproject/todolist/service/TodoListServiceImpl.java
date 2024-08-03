@@ -15,20 +15,15 @@ public class TodoListServiceImpl {
     @Autowired
     private TodoListMapper todoListMapper;
 
-
-    public int registerTodoList(ReqRegisterTodoListDto reqDto) {
-
+    public int registerTodo(ReqRegisterTodoListDto reqDto) {
         TodoList todoList = TodoList.builder()
-                .todoId(0)
                 .content(reqDto.getContent())
                 .date(reqDto.getDate())
                 .build();
-
         return todoListMapper.save(todoList);
     }
 
-
-    public int updateTodoList(ReqUpdateTodoListDto reqDto) {
+    public int updateTodo(ReqUpdateTodoListDto reqDto) {
         TodoList todoList = TodoList.builder()
                 .todoId(reqDto.getTodoId())
                 .content(reqDto.getContent())
@@ -36,11 +31,9 @@ public class TodoListServiceImpl {
         return todoListMapper.update(todoList);
     }
 
-
     public List<RespGetTodoListDto> getTodoList(String date) {
         List<RespGetTodoListDto> respDtos = new ArrayList<>();
-
-        List<TodoList> todoLists = todoListMapper.findTodoListByTodoId(date);
+        List<TodoList> todoLists = todoListMapper.findTodoListByDate(date);
 
         for(TodoList todo : todoLists) {
             RespGetTodoListDto dto = RespGetTodoListDto.builder()
@@ -54,49 +47,24 @@ public class TodoListServiceImpl {
         return respDtos;
     }
 
-
-    public int deleteTodoList(int todoId) {
+    public int deleteTodo(int todoId) {
         return todoListMapper.delete(todoId);
     }
 
-
     public RespGetTodoDto getTodo(int todoId) {
-
         TodoList getTodo = todoListMapper.findTodoById(todoId);
-
         return RespGetTodoDto.builder()
                 .todoId(getTodo.getTodoId())
-                .state(getTodo.getTodoId())
                 .content(getTodo.getContent())
                 .build();
     }
 
-    public List<RespGetTodoListDto> getTodoListDtoBystate (int state) {
-        List<RespGetTodoListDto> todolistDtos = new ArrayList<>();
-
-        List<TodoList> getLists = todoListMapper.findTodoListByState(state);
-
-        for(TodoList todoList : getLists) {
-            RespGetTodoListDto dtos = RespGetTodoListDto.builder()
-                    .todoId(todoList.getTodoId())
-                    .content(todoList.getContent())
-                    .date(todoList.getDate())
-                    .state(todoList.getState())
-                    .build();
-
-            todolistDtos.add(dtos);
-        }
-        return todolistDtos;
-    }
-
-
-    public int setCheckboxState(ReqSetCheckboxStateDto reqDto) {
+    public int updateCheckBoxState(ReqSetCheckboxStateDto reqDto) {
         TodoList todoList = TodoList
                 .builder()
                 .todoId(reqDto.getTodoId())
                 .state(reqDto.getState() == 0 ? 1 : 0)
                 .build();
-
         return todoListMapper.updateCheckboxState(todoList);
     }
 }

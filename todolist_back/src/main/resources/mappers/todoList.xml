@@ -3,11 +3,12 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.toyproject.todolist.repository.TodoListMapper">
+
     <insert id="save" parameterType="com.toyproject.todolist.entity.TodoList">
         insert into todo_tb
-            values(0, #{content}, #{date}, #{state})
-
+            values(0, #{content}, #{date}, 0)
     </insert>
+
     <update id="update" parameterType="com.toyproject.todolist.entity.TodoList">
         update
             todo_tb
@@ -15,8 +16,8 @@
             content = #{content}
         where
             todoId = #{todoId}
-
     </update>
+
     <update id="updateCheckboxState" parameterType="com.toyproject.todolist.entity.TodoList">
         update
             todo_tb
@@ -25,15 +26,16 @@
         where
             todoId = #{todoId}
     </update>
-    <delete id="delete">
+
+    <delete id="delete" parameterType="integer">
         delete
-         from
-        todo_tb
+        from
+            todo_tb
         where
-        todoId = #{todoId}
+            todoId = #{todoId}
     </delete>
 
-    <select id="findTodoListByTodoId" parameterType="string"
+    <select id="findTodoListByDate" parameterType="string"
             resultType="com.toyproject.todolist.entity.TodoList">
         select
             todoId,
@@ -47,6 +49,7 @@
         order by
              todoId desc
     </select>
+
     <select id="findTodoById" resultType="com.toyproject.todolist.entity.TodoList">
         select
             todoId,
@@ -57,18 +60,6 @@
             todo_tb
         where
             todoId = #{todoId}
-    </select>
-
-    <select id="findTodoListByState" parameterType="integer" resultType="com.toyproject.todolist.entity.TodoList">
-        select
-            todoId,
-            content,
-            date,
-            state
-        from
-            todo_tb
-        where
-            state = #{state}
     </select>
 
 </mapper>
